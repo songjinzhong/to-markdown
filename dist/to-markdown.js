@@ -388,22 +388,24 @@ function createHtmlParser () {
       });
     };
   } else {
-    Parser.prototype.parseFromString = function (string) {
-      var doc;
-
-      if (!shouldUseActiveX()) {
-        doc = document.implementation.createHTMLDocument('');
-      } else {
-        doc = new ActiveXObject('htmlfile');
+    if (!shouldUseActiveX()) {
+      Parser.prototype.parseFromString = function (string) {
+        var doc = document.implementation.createHTMLDocument('');
+        doc.open();
+        doc.write(string);
+        doc.close();
+        return doc;
+      };
+    } else {
+      Parser.prototype.parseFromString = function (string) {
+        var doc = new ActiveXObject('htmlfile');
         doc.designMode = 'on'; // disable on-page scripts
-      }
-
-      doc.open();
-      doc.write(string);
-      doc.close();
-
-      return doc;
-    };
+        doc.open();
+        doc.write(string);
+        doc.close();
+        return doc;
+      };
+    }
   }
   return Parser;
 }
