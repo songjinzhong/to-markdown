@@ -380,6 +380,11 @@ test('leading/trailing whitespace', function () {
       '<h1><img src="image.png"> Hello world.</h1>',
       '# ![](image.png) Hello world.',
       'Whitespace and void elements'
+    ],
+    [
+      'Hello <strong><a href="https://www.google.com">Hello </a></strong>Hello',
+      'Hello **[Hello](https://www.google.com)** Hello',
+      'Whitespace in bold links.'
     ]
   ])
 })
@@ -443,4 +448,10 @@ test('malformed documents', function () {
   expect(0) // just make sure to-markdown doesn't crash
   var html = '<HTML><head></head><BODY><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><body onload=alert(document.cookie);></body></html>'
   toMarkdown(html)
+})
+
+test('empty string', function () {
+  runTestCases([
+    ['', '']
+  ])
 })

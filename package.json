@@ -1,7 +1,7 @@
 {
   "name": "to-markdown",
   "description": "HTML-to-Markdown converter",
-  "version": "3.0.1",
+  "version": "3.0.4",
   "author": "Dom Christie",
   "browser": {
     "jsdom": false
@@ -18,7 +18,7 @@
     "watchify": "^2.5.0"
   },
   "engines": {
-    "node": "^4"
+    "node": ">=4.0.0"
   },
   "keywords": [
     "markdown"
